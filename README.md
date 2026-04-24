@@ -1,3 +1,6 @@
+以下是可直接复制覆盖的 `README.md`：
+
+```markdown
 ---
 title: COE Core Demo
 emoji: 🌍
@@ -22,7 +25,7 @@ COE 为碎片化的世界模型生态（JEPA、Dreamer、World Labs、Cosmos 等
 | **JEP** | "谁负责？" | 事后追溯 (post-hoc) | 问责语法 |
 | **COE** | "世界是什么？" | 事前/事中 (ex-ante / in-situ) | 认知共识 |
 
-&gt; 两者共享 J/D/T/V 原语基因，形成完整的 **"认知-问责"双循环架构**。
+> 两者共享 J/D/T/V 原语基因，形成完整的 **"认知-问责"双循环架构**。
 
 ## 核心组件
 
@@ -43,15 +46,26 @@ COE 为碎片化的世界模型生态（JEPA、Dreamer、World Labs、Cosmos 等
 7. B/C 确认新状态
 8. 共识引擎更新 SWS: door=closed
 
-### Multi-Agent Simulation
+## Multi-Agent Simulation
 
 `simulation.py` — Reproduces Appendix A scenario (3 robots confirming door state).
 
-Run: `python simulation.py`
+Run:
+```bash
+pip install canonicaljson cryptography
+python simulation.py
+```
 
 Outputs:
 - `simulation_log.txt` — Human-readable execution trace
 - `simulation_chain.json` — Complete audit chain with signatures
+
+Results:
+- 8 events generated (J/D/T/V)
+- 2 consensus outputs (door=open → door=closed)
+- Chain integrity: PASS
+- Weighted trust: 1.71 > threshold 1.5
+
 
 ## 许可证
 
@@ -59,4 +73,5 @@ Apache-2.0
 
 ## 作者
 
-Cognitive Emergence Lab / Human Judgment Systems Foundation
+Cognitive Emergence Lab / Human Judgment System Foundation
+```
