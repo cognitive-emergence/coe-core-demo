@@ -53,13 +53,6 @@ Outputs:
 - `simulation_log.txt` — Human-readable execution trace
 - `simulation_chain.json` — Complete audit chain with signatures
 
-## 关联资源
-
-- 问责追溯层：[cognitiveemergencelab/jep-spec](https://huggingface.co/spaces/cognitiveemergencelab/jep-spec)
-- 记录与隐私层：[cognitiveemergencelab/hjs-archive](https://huggingface.co/spaces/cognitiveemergencelab/hjs-archive)
-- 因果链层：[cognitiveemergencelab/jac-core-demo](https://huggingface.co/spaces/cognitiveemergencelab/jac-core-demo)
-- 数学基础：[cognitiveemergencelab/causal-observability-demo](https://huggingface.co/spaces/cognitiveemergencelab/causal-observability-demo)
-
 ## 许可证
 
 Apache-2.0
