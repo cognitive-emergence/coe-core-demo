@@ -43,6 +43,16 @@ COE 为碎片化的世界模型生态（JEPA、Dreamer、World Labs、Cosmos 等
 7. B/C 确认新状态
 8. 共识引擎更新 SWS: door=closed
 
+### Multi-Agent Simulation
+
+`simulation.py` — Reproduces Appendix A scenario (3 robots confirming door state).
+
+Run: `python simulation.py`
+
+Outputs:
+- `simulation_log.txt` — Human-readable execution trace
+- `simulation_chain.json` — Complete audit chain with signatures
+
 ## 关联资源
 
 - 问责追溯层：[cognitiveemergencelab/jep-spec](https://huggingface.co/spaces/cognitiveemergencelab/jep-spec)
