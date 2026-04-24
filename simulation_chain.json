@@ -1,0 +1,325 @@
+{
+  "simulation": {
+    "scenario": "Warehouse Door State Confirmation",
+    "agents": [
+      {
+        "id": "did:example:robotA",
+        "name": "Robot A (JEPA)",
+        "weight": 0.9
+      },
+      {
+        "id": "did:example:robotB",
+        "name": "Robot B (Dreamer)",
+        "weight": 0.8
+      },
+      {
+        "id": "did:example:humanC",
+        "name": "Human Supervisor",
+        "weight": 1.0
+      }
+    ],
+    "total_events": 8,
+    "consensus_outputs": 2,
+    "chain_valid": true
+  },
+  "audit_chain": {
+    "chain_length": 8,
+    "events": [
+      {
+        "event_id": "9f92dfad-a093-4d0a-8e8d-12d5ebc23951",
+        "protocol": "COE",
+        "primitive": "J",
+        "issuer": "did:example:robotA",
+        "timestamp": "2026-04-24T10:12:44Z",
+        "target": "warehouse-zone-3",
+        "prev_event_id": null,
+        "assertion": {
+          "subject": "door_01",
+          "predicate": "status",
+          "value": "open",
+          "confidence": 0.95
+        },
+        "hash": "sha256:5617576d6561f5ceaa8ef5f7ad19fc4d225c1b306cd8c4993389474c8160577f",
+        "signature": "_8GCYigloaA4SVo1D1ktVAdqHVP8Ag_4HZQrgQ-3L6A7PGIiUMUCyTf3IgwckZaw0U4Ys0J5dkZZMgSx0ZibBw"
+      },
+      {
+        "event_id": "b3ee60c5-712d-445f-8fca-87373d7ce66f",
+        "protocol": "COE",
+        "primitive": "D",
+        "issuer": "did:example:robotB",
+        "timestamp": "2026-04-24T10:12:44Z",
+        "target": "warehouse-zone-3",
+        "prev_event_id": "9f92dfad-a093-4d0a-8e8d-12d5ebc23951",
+        "delegate_to": "did:example:robotA",
+        "delegation_scope": "continuous_observation",
+        "hash": "sha256:adfd1ff47a9cc1bc019b33807114729935335c87c1e5eb57f3cb861474e1750f",
+        "signature": "wE-DRMi5w27Xs0n6Rzb9ersG5YU9QCB0nh1LSjt9_1GneBjJseaiUQhD6xvFoFgUUd0XZCVL52JtWke1IKwIDg"
+      },
+      {
+        "event_id": "f1d7141d-4f0d-4186-8b88-3f18c4efd9f5",
+        "protocol": "COE",
+        "primitive": "V",
+        "issuer": "did:example:robotB",
+        "timestamp": "2026-04-24T10:12:44Z",
+        "target": "warehouse-zone-3",
+        "prev_event_id": "b3ee60c5-712d-445f-8fca-87373d7ce66f",
+        "verify_of": [
+          "9f92dfad-a093-4d0a-8e8d-12d5ebc23951"
+        ],
+        "verification_result": "confirmed",
+        "hash": "sha256:5e5ddd583bb5a421a63217c79a1bbdbf775fa9bc31a1db8a86f28a83ee3736e8",
+        "signature": "bajow0Ulfxe-qPCKjv114Ljl9LwG2qjm4QBuvSFdJxUl6WHxwFrEV4bQ1jkDwfkfUvCnL7u17sDG_gVW424wAQ"
+      },
+      {
+        "event_id": "fc50fb76-8bb9-4fc2-9ed0-e155e86d852e",
+        "protocol": "COE",
+        "primitive": "V",
+        "issuer": "did:example:humanC",
+        "timestamp": "2026-04-24T10:12:44Z",
+        "target": "warehouse-zone-3",
+        "prev_event_id": "f1d7141d-4f0d-4186-8b88-3f18c4efd9f5",
+        "verify_of": [
+          "9f92dfad-a093-4d0a-8e8d-12d5ebc23951"
+        ],
+        "verification_result": "confirmed",
+        "hash": "sha256:7d1700c7eeff6c01d25a07c22f4163a009f07860d9cd2b9ab2bb7f2a48c7632b",
+        "signature": "4mXQ83pHBQHC2dVg4gcahCqvuSlsu0K0hv2GruAuCaLc1Sr-RmcUhRLyiS6D1d922rGoDhq3mjFK2P79qb29Cw"
+      },
+      {
+        "event_id": "9ec5414a-8401-4408-aee0-88c1b6b2b1b9",
+        "protocol": "COE",
+        "primitive": "T",
+        "issuer": "did:example:robotA",
+        "timestamp": "2026-04-24T10:12:44Z",
+        "target": "warehouse-zone-3",
+        "prev_event_id": "fc50fb76-8bb9-4fc2-9ed0-e155e86d852e",
+        "terminate_of": "9f92dfad-a093-4d0a-8e8d-12d5ebc23951",
+        "terminate_reason": "state_changed",
+        "hash": "sha256:c1bfd862112f6a4d07bf4f0e1a1a9037866babba279bcf1a0d1e468aefed436b",
+        "signature": "lB6-LeZgP20525WK5OWz7UXm26zp8a8_V5v4K2I4fkRTRKLguFY5ShiDP2jqfx9DSo6UOMMjhSKeY5ZVZN-HBw"
+      },
+      {
+        "event_id": "ae96a84a-de2c-4590-a221-ee31a3a6c028",
+        "protocol": "COE",
+        "primitive": "J",
+        "issuer": "did:example:robotA",
+        "timestamp": "2026-04-24T10:12:44Z",
+        "target": "warehouse-zone-3",
+        "prev_event_id": "9ec5414a-8401-4408-aee0-88c1b6b2b1b9",
+        "assertion": {
+          "subject": "door_01",
+          "predicate": "status",
+          "value": "closed",
+          "confidence": 0.95
+        },
+        "hash": "sha256:abc06488a6ed91ceb591298a471a7438fbf4dcf50da127b1d01ca1110bc3bded",
+        "signature": "zMIj2EvI3cz8i8yYA6m1X6oiOsMkOAAhakab_w-Yffbds5hz8R0ZsEuIbFRgIll6JO20s2CpJ7qULShkgcdVBQ"
+      },
+      {
+        "event_id": "8eadfe94-13eb-49e6-a91b-f9a86cf37314",
+        "protocol": "COE",
+        "primitive": "V",
+        "issuer": "did:example:robotB",
+        "timestamp": "2026-04-24T10:12:44Z",
+        "target": "warehouse-zone-3",
+        "prev_event_id": "ae96a84a-de2c-4590-a221-ee31a3a6c028",
+        "verify_of": [
+          "ae96a84a-de2c-4590-a221-ee31a3a6c028"
+        ],
+        "verification_result": "confirmed",
+        "hash": "sha256:e3c5f75dbf934949de8aee047cf9d3de27614ae3eac5cd580794fef72944d096",
+        "signature": "Aawyh6_5vSfBOHfW58CBfYAi-4MwkTXUcLWY9mzKArD4MuWfLP7KBQvHAVWv1HpuUV6D4tvPtZuhkkcu52EjBQ"
+      },
+      {
+        "event_id": "7b279a9c-1c28-4a2d-9da5-f18d726fcc85",
+        "protocol": "COE",
+        "primitive": "V",
+        "issuer": "did:example:humanC",
+        "timestamp": "2026-04-24T10:12:44Z",
+        "target": "warehouse-zone-3",
+        "prev_event_id": "8eadfe94-13eb-49e6-a91b-f9a86cf37314",
+        "verify_of": [
+          "ae96a84a-de2c-4590-a221-ee31a3a6c028"
+        ],
+        "verification_result": "confirmed",
+        "hash": "sha256:bb82eff30380c06f962c7de04351023f333906ecbc1cfb7e3300b24d87fa3dff",
+        "signature": "0EvSHbWtznybtvin3LTHtgBgBHUbvgrQhNrM1VhyfmncCAkQj1HA1Vu-BRjxMV-EgTk8IZM0YoHv1RlpJHnLDQ"
+      }
+    ],
+    "verification": "Chain valid: 8 events"
+  },
+  "consensus_states": [
+    {
+      "sws_id": "95c10478-6fcc-496f-8947-9e42031661ee",
+      "target": "warehouse-zone-3",
+      "timestamp": "2026-04-24T10:12:44Z",
+      "assertions": [
+        {
+          "subject": "door_01",
+          "predicate": "status",
+          "value": "open",
+          "confidence": 0.95,
+          "based_on": [
+            "9f92dfad-a093-4d0a-8e8d-12d5ebc23951",
+            "f1d7141d-4f0d-4186-8b88-3f18c4efd9f5",
+            "fc50fb76-8bb9-4fc2-9ed0-e155e86d852e"
+          ],
+          "consensus_policy": "weighted_trust",
+          "confirmations": 2,
+          "confirmed_weight": 1.71
+        }
+      ],
+      "previous_sws_id": null
+    },
+    {
+      "sws_id": "3fda5c5d-49a2-4238-ad1f-5a4a63fd0617",
+      "target": "warehouse-zone-3",
+      "timestamp": "2026-04-24T10:12:44Z",
+      "assertions": [
+        {
+          "subject": "door_01",
+          "predicate": "status",
+          "value": "open",
+          "confidence": 0.95,
+          "based_on": [
+            "9f92dfad-a093-4d0a-8e8d-12d5ebc23951",
+            "f1d7141d-4f0d-4186-8b88-3f18c4efd9f5",
+            "fc50fb76-8bb9-4fc2-9ed0-e155e86d852e"
+          ],
+          "consensus_policy": "weighted_trust",
+          "confirmations": 2,
+          "confirmed_weight": 1.71
+        }
+      ],
+      "previous_sws_id": "95c10478-6fcc-496f-8947-9e42031661ee"
+    }
+  ],
+  "agent_event_logs": {
+    "did:example:robotA": [
+      {
+        "event_id": "9f92dfad-a093-4d0a-8e8d-12d5ebc23951",
+        "protocol": "COE",
+        "primitive": "J",
+        "issuer": "did:example:robotA",
+        "timestamp": "2026-04-24T10:12:44Z",
+        "target": "warehouse-zone-3",
+        "prev_event_id": null,
+        "assertion": {
+          "subject": "door_01",
+          "predicate": "status",
+          "value": "open",
+          "confidence": 0.95
+        },
+        "hash": "sha256:5617576d6561f5ceaa8ef5f7ad19fc4d225c1b306cd8c4993389474c8160577f",
+        "signature": "_8GCYigloaA4SVo1D1ktVAdqHVP8Ag_4HZQrgQ-3L6A7PGIiUMUCyTf3IgwckZaw0U4Ys0J5dkZZMgSx0ZibBw"
+      },
+      {
+        "event_id": "9ec5414a-8401-4408-aee0-88c1b6b2b1b9",
+        "protocol": "COE",
+        "primitive": "T",
+        "issuer": "did:example:robotA",
+        "timestamp": "2026-04-24T10:12:44Z",
+        "target": "warehouse-zone-3",
+        "prev_event_id": "fc50fb76-8bb9-4fc2-9ed0-e155e86d852e",
+        "terminate_of": "9f92dfad-a093-4d0a-8e8d-12d5ebc23951",
+        "terminate_reason": "state_changed",
+        "hash": "sha256:c1bfd862112f6a4d07bf4f0e1a1a9037866babba279bcf1a0d1e468aefed436b",
+        "signature": "lB6-LeZgP20525WK5OWz7UXm26zp8a8_V5v4K2I4fkRTRKLguFY5ShiDP2jqfx9DSo6UOMMjhSKeY5ZVZN-HBw"
+      },
+      {
+        "event_id": "ae96a84a-de2c-4590-a221-ee31a3a6c028",
+        "protocol": "COE",
+        "primitive": "J",
+        "issuer": "did:example:robotA",
+        "timestamp": "2026-04-24T10:12:44Z",
+        "target": "warehouse-zone-3",
+        "prev_event_id": "9ec5414a-8401-4408-aee0-88c1b6b2b1b9",
+        "assertion": {
+          "subject": "door_01",
+          "predicate": "status",
+          "value": "closed",
+          "confidence": 0.95
+        },
+        "hash": "sha256:abc06488a6ed91ceb591298a471a7438fbf4dcf50da127b1d01ca1110bc3bded",
+        "signature": "zMIj2EvI3cz8i8yYA6m1X6oiOsMkOAAhakab_w-Yffbds5hz8R0ZsEuIbFRgIll6JO20s2CpJ7qULShkgcdVBQ"
+      }
+    ],
+    "did:example:robotB": [
+      {
+        "event_id": "b3ee60c5-712d-445f-8fca-87373d7ce66f",
+        "protocol": "COE",
+        "primitive": "D",
+        "issuer": "did:example:robotB",
+        "timestamp": "2026-04-24T10:12:44Z",
+        "target": "warehouse-zone-3",
+        "prev_event_id": "9f92dfad-a093-4d0a-8e8d-12d5ebc23951",
+        "delegate_to": "did:example:robotA",
+        "delegation_scope": "continuous_observation",
+        "hash": "sha256:adfd1ff47a9cc1bc019b33807114729935335c87c1e5eb57f3cb861474e1750f",
+        "signature": "wE-DRMi5w27Xs0n6Rzb9ersG5YU9QCB0nh1LSjt9_1GneBjJseaiUQhD6xvFoFgUUd0XZCVL52JtWke1IKwIDg"
+      },
+      {
+        "event_id": "f1d7141d-4f0d-4186-8b88-3f18c4efd9f5",
+        "protocol": "COE",
+        "primitive": "V",
+        "issuer": "did:example:robotB",
+        "timestamp": "2026-04-24T10:12:44Z",
+        "target": "warehouse-zone-3",
+        "prev_event_id": "b3ee60c5-712d-445f-8fca-87373d7ce66f",
+        "verify_of": [
+          "9f92dfad-a093-4d0a-8e8d-12d5ebc23951"
+        ],
+        "verification_result": "confirmed",
+        "hash": "sha256:5e5ddd583bb5a421a63217c79a1bbdbf775fa9bc31a1db8a86f28a83ee3736e8",
+        "signature": "bajow0Ulfxe-qPCKjv114Ljl9LwG2qjm4QBuvSFdJxUl6WHxwFrEV4bQ1jkDwfkfUvCnL7u17sDG_gVW424wAQ"
+      },
+      {
+        "event_id": "8eadfe94-13eb-49e6-a91b-f9a86cf37314",
+        "protocol": "COE",
+        "primitive": "V",
+        "issuer": "did:example:robotB",
+        "timestamp": "2026-04-24T10:12:44Z",
+        "target": "warehouse-zone-3",
+        "prev_event_id": "ae96a84a-de2c-4590-a221-ee31a3a6c028",
+        "verify_of": [
+          "ae96a84a-de2c-4590-a221-ee31a3a6c028"
+        ],
+        "verification_result": "confirmed",
+        "hash": "sha256:e3c5f75dbf934949de8aee047cf9d3de27614ae3eac5cd580794fef72944d096",
+        "signature": "Aawyh6_5vSfBOHfW58CBfYAi-4MwkTXUcLWY9mzKArD4MuWfLP7KBQvHAVWv1HpuUV6D4tvPtZuhkkcu52EjBQ"
+      }
+    ],
+    "did:example:humanC": [
+      {
+        "event_id": "fc50fb76-8bb9-4fc2-9ed0-e155e86d852e",
+        "protocol": "COE",
+        "primitive": "V",
+        "issuer": "did:example:humanC",
+        "timestamp": "2026-04-24T10:12:44Z",
+        "target": "warehouse-zone-3",
+        "prev_event_id": "f1d7141d-4f0d-4186-8b88-3f18c4efd9f5",
+        "verify_of": [
+          "9f92dfad-a093-4d0a-8e8d-12d5ebc23951"
+        ],
+        "verification_result": "confirmed",
+        "hash": "sha256:7d1700c7eeff6c01d25a07c22f4163a009f07860d9cd2b9ab2bb7f2a48c7632b",
+        "signature": "4mXQ83pHBQHC2dVg4gcahCqvuSlsu0K0hv2GruAuCaLc1Sr-RmcUhRLyiS6D1d922rGoDhq3mjFK2P79qb29Cw"
+      },
+      {
+        "event_id": "7b279a9c-1c28-4a2d-9da5-f18d726fcc85",
+        "protocol": "COE",
+        "primitive": "V",
+        "issuer": "did:example:humanC",
+        "timestamp": "2026-04-24T10:12:44Z",
+        "target": "warehouse-zone-3",
+        "prev_event_id": "8eadfe94-13eb-49e6-a91b-f9a86cf37314",
+        "verify_of": [
+          "ae96a84a-de2c-4590-a221-ee31a3a6c028"
+        ],
+        "verification_result": "confirmed",
+        "hash": "sha256:bb82eff30380c06f962c7de04351023f333906ecbc1cfb7e3300b24d87fa3dff",
+        "signature": "0EvSHbWtznybtvin3LTHtgBgBHUbvgrQhNrM1VhyfmncCAkQj1HA1Vu-BRjxMV-EgTk8IZM0YoHv1RlpJHnLDQ"
+      }
+    ]
+  }
+}

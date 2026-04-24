@@ -1,0 +1,42 @@
+
+[Step 1] Robot A observes door is open
+  Event ID: 9f92dfad... | Primitive: J | Value: open
+
+[Step 2] Robot B delegates to Robot A
+  Event ID: b3ee60c5... | Primitive: D
+
+[Step 3] Robot B confirms A's observation
+  Event ID: f1d7141d... | Primitive: V | Result: confirmed
+
+[Step 4] Human C confirms
+  Event ID: fc50fb76... | Primitive: V | Result: confirmed
+
+[Consensus 1] Evaluating door=open...
+  🌍 SWS#1 OUTPUT: door = OPEN
+  Policy: weighted_trust | Threshold: 1.5
+  Confirmed weight: 1.71
+  Confirmations: 2
+
+[Step 5] Robot A terminates old state
+  Event ID: 9ec5414a... | Primitive: T
+
+[Step 6] Robot A observes door closed
+  Event ID: ae96a84a... | Primitive: J | Value: closed
+
+[Step 7] Robot B confirms new state
+
+[Step 8] Human C confirms new state
+
+[Consensus 2] Evaluating door=closed...
+  🌍 SWS#2 OUTPUT: door = CLOSED
+  Confirmed weight: 1.71
+  Confirmations: 2
+
+======================================================================
+AUDIT CHAIN VERIFICATION
+======================================================================
+  Chain integrity: PASS — Chain valid: 8 events
+
+======================================================================
+EXPORT
+======================================================================
