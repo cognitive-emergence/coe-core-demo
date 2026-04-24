@@ -1,6 +1,3 @@
-以下是可直接复制覆盖的 `README.md`：
-
-```markdown
 ---
 title: COE Core Demo
 emoji: 🌍
