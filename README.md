@@ -71,4 +71,3 @@ Apache-2.0
 ## 作者
 
 Cognitive Emergence Lab
-```
