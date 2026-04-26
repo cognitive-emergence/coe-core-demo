@@ -70,4 +70,3 @@ Apache-2.0
 ## Author
 
 Cognitive Emergence Lab
-```
