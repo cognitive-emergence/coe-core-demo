@@ -18,7 +18,7 @@ COE provides a unified **cognitive interaction layer** for the fragmented world 
 
 | Protocol | Question Answered | Temporal Aspect | Semantics |
 |----------|-------------------|-----------------|-----------|
-| **JEP** | "Who is responsible?" | Post-hoc | Accountability grammar |
+| **JEP** | "Who is responsible?" | / | Accountability grammar |
 | **COE** | "What is the world?" | Ex-ante / in-situ | Cognitive consensus |
 
 > Both share the J/D/T/V primitive gene, forming a complete **"cognition-accountability" dual-loop architecture**.
