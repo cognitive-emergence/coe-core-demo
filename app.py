@@ -458,18 +458,22 @@ with gr.Blocks(
 ) as demo:
     gr.Markdown("""
     # COE Core — Cognition-Oriented Emergence
-    ### A Cognitive Interaction Protocol for Shared World Models (draft-wang-coe-00)
-    
-    COE 为碎片化的世界模型生态提供统一的**认知交互层**。
-    
-    > **J** (Judge) — 发起观察断言："我观察到 X"
-    > **D** (Delegate) — 委托观察权："我授权你观察 X"
-    > **T** (Terminate) — 终止状态："X 不再有效"
-    > **V** (Verify) — 交叉验证："我确认你的观察"
-    
-    与 JEP 共享 J/D/T/V 基因，但语义不同：
-    - **JEP** = 问责追溯 (post-hoc) → "谁负责？"
-    - **COE** = 认知共识 (ex-ante) → "世界是什么？"
+    ### 历史原型：共享观察与状态声明（draft-wang-coe-00 阶段）
+
+    本页保留早期 COE 本地事件格式与合成实验。
+    [修订后的 COE 草案](https://datatracker.ietf.org/doc/draft-wang-coe/)
+    将 COE 定义为 JEP 的可选 profile，用于绑定观察、验证记录、状态声明和证据引用。
+
+    **本演示尚未迁移至修订后的 COE profile 或 JEP-Core v0.6。**
+    记录与合成结果表达参与者的声明，不证明客观世界状态。
+
+    以下是本地演示中的事件映射：
+    - **J**：记录观察声明
+    - **D**：记录观察委托声明
+    - **T**：记录终止声明；是否生效取决于应用逻辑
+    - **V**：记录确认或检查结果
+
+    这些映射不重新定义 JEP Core 的事件语义。
     """)
     
     with gr.Row():
@@ -480,7 +484,7 @@ with gr.Blocks(
             coe_primitive = gr.Dropdown(
                 choices=["J", "D", "T", "V"],
                 value="J",
-                label="primitive (认知原语)",
+                label="primitive (本地事件映射)",
                 info="J=观察断言, D=委托, T=终止, V=验证"
             )
             coe_issuer = gr.Textbox(
@@ -533,10 +537,10 @@ with gr.Blocks(
             coe_json = gr.Textbox(
                 label="COE 事件 (JSON)",
                 lines=16,
-                info="protocol='COE' 区分于 JEP"
+                info="历史 COE 演示格式；非 JEP-Core v0.6 事件"
             )
             coe_canonical = gr.Textbox(
-                label="JCS 规范化载荷 (RFC 8785)",
+                label="本地 canonicaljson 序列化载荷",
                 lines=4
             )
             coe_sig = gr.Textbox(label="签名", lines=2)
@@ -563,13 +567,13 @@ with gr.Blocks(
         
         # =================== RIGHT: Consensus Demo ===================
         with gr.Column(scale=1):
-            gr.Markdown("### 🌍 共识引擎演示")
-            gr.Markdown("*Appendix A: 三机器人确认门状态*")
+            gr.Markdown("### 🌍 本地状态合成演示")
+            gr.Markdown("*模拟角色对仓库门状态提交观察与确认*")
             
             policy = gr.Dropdown(
                 choices=["simple_majority", "weighted_trust", "bft"],
                 value="weighted_trust",
-                label="共识策略 (Section 4.2)"
+                label="本地合成策略（历史实现）"
             )
             threshold = gr.Number(
                 label="Weighted Trust 阈值",
@@ -577,21 +581,21 @@ with gr.Blocks(
                 info="Simple Majority 和 BFT 忽略此值"
             )
             
-            gr.Markdown("**信任权重** (Weighted Trust / BFT 使用)")
-            w_a = gr.Number(label="Robot A (JEPA)", value=0.9, minimum=0, maximum=1)
-            w_b = gr.Number(label="Robot B (Dreamer)", value=0.8, minimum=0, maximum=1)
-            w_c = gr.Number(label="Human C", value=1.0, minimum=0, maximum=1)
+            gr.Markdown("**演示权重**（仅 Weighted Trust 使用）")
+            w_a = gr.Number(label="Robot A (JEPA 模拟标签)", value=0.9, minimum=0, maximum=1)
+            w_b = gr.Number(label="Robot B (Dreamer 模拟标签)", value=0.8, minimum=0, maximum=1)
+            w_c = gr.Number(label="Human C（模拟角色）", value=1.0, minimum=0, maximum=1)
             
-            demo_btn = gr.Button("运行验证场景", variant="primary")
+            demo_btn = gr.Button("运行演示场景", variant="primary")
             demo_result = gr.Textbox(
                 label="场景执行结果",
                 lines=20,
-                info="8 步事件序列 + 2 次共识输出 + 审计链验证"
+                info="场景记录、合成声明与本地链检查结果"
             )
             demo_versions = gr.Textbox(
-                label="版本锚定记录",
+                label="本地版本记录",
                 lines=10,
-                info="SWS 版本历史 (Section 5.2)"
+                info="SWS 声明历史；未接入外部锚定服务"
             )
     
     gen_btn.click(
@@ -619,39 +623,32 @@ with gr.Blocks(
     
     gr.Markdown("""
     ---
-    ### COE 在 JEP 生态中的位置
-    
-    ```
-    因果可观测性 (数学基础)
-           ↓
-    JEP (问责语法: 谁负责?)
-           ↓
-    HJS (记录层: 机器不可变 + 人类隐私)
-           ↓
-    JAC (因果链: task_based_on)
-           ↓
-    COE (认知层: 世界是什么?)  ← 你在这里
-    ```
-    
-    ### 窄腰架构 (Section 2.2)
-    
-    ```
-    上层: 多智能体协作场景 (机器人协同、AR/VR、分布式科学共识)
-           ↓ COE Events (J/D/T/V)
-    窄腰: COE Core (2000-3000 行参考实现)
-           ↓ COE Adapters
-    下层: 异构世界模型 (JEPA, Dreamer, World Labs, Cosmos...)
-    ```
-    
-    ### 共识策略对比 (Section 4.2)
-    
-    | 策略 | 适用场景 | 规则 |
-    |------|---------|------|
-    | Simple Majority | 少量 CU，信任平等 | 确认数 > 50% |
-    | Weighted Trust | 能力异构，可靠性不同 | Σ(w_i × confidence_i) > threshold |
-    | BFT | 高安全，存在恶意节点 | 2f+1 总事件，> f+1 确认 |
-    
+    ### 阅读入口与版本关系
+
+    - [COE 草案](https://datatracker.ietf.org/doc/draft-wang-coe/)：共享观察与状态声明证据的 JEP profile，仍为工作草案。
+    - [JEP-Core v0.6](https://github.com/hjs-spec/jep-v06)：核心事件格式与签名验证规则。
+    - [本演示 README](https://github.com/cognitive-emergence/coe-core-demo)：历史实现、运行方法和已知限制。
+
+    ### 演示检查的范围
+
+    签名面板仅检查所提供公钥下的签名，不确认公钥与 issuer 的身份关系。
+    事件生成器每次生成新的演示密钥。场景的链检查从第二个事件开始检查引用与哈希，
+    不检查首事件哈希或任何签名。版本记录与时间戳保存在本地，没有接入外部锚定服务。
+
+    ### 本地合成策略
+
+    | 选项 | 演示用途 |
+    | --- | --- |
+    | simple_majority | 对相关确认记录计数 |
+    | weighted_trust | 按预设权重与置信度计算分数 |
+    | bft | 阈值计数示例；未证明分布式拜占庭容错能力 |
+
+    JEPA、Dreamer 和 Human C 均为模拟角色标签。权重不代表经过校准的可靠性。
+    输出的 SWS 是本地合成声明，不是对现实状态的独立验证。
+    另见 README 中脚本模拟的状态选择限制；日志中的成功文案不替代对 JSON 输出的检查。
+
     ### 许可证
+
     Apache-2.0
     """)
 
